@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "5367ac9c-b250-463a-864f-0a14b140c452",
+		"name": "api.parsers.dev postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "parse",
+			"item": [
+				{
+					"name": "postgresql",
+					"item": [
+						{
+							"name": "/api/parse/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c414e1f3-e2b2-4b11-a82e-a0fef68a1dd8",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"type": "text",
+										"value": "{{x-api-key}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"db\": \"pg\",\n    \"sql\": \"CREATE TABLE t();SELECT 1; SELECT 1 FROM ; SELECT 2\"\n\t\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.parsers.dev/api/v1/parse/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"parsers",
+										"dev"
+									],
+									"path": [
+										"api",
+										"v1",
+										"parse",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "snowflake",
+					"item": [
+						{
+							"name": "/api/parse/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a3c82748-33f7-40b9-ae1f-461997b8f005",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"type": "text",
+										"value": "{{x-api-key}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"db\": \"snowflake\",\n    \"sql\": \"SELECT 1; SELECT 1 FROM ; SELECT 2\"\n\t\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.parsers.dev/api/v1/parse/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"parsers",
+										"dev"
+									],
+									"path": [
+										"api",
+										"v1",
+										"parse",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "compile",
+			"item": [
+				{
+					"name": "postgresql",
+					"item": [
+						{
+							"name": "/api/compile (+ast)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1b9001ed-7a0f-4f03-a446-990af9055d89",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"type": "text",
+										"value": "{{x-api-key}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"db\": \"pg\",\n    \"ddl\": \"CREATE TABLE t (a int); CREATE\",\n    \"dmls\": [\n        \"table t; table t1\",\n        \"table\",\n        \"select * FROM t WHERE a = $1\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.parsers.dev/api/v1/compile",
+									"protocol": "https",
+									"host": [
+										"api",
+										"parsers",
+										"dev"
+									],
+									"path": [
+										"api",
+										"v1",
+										"compile"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/compile",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bdf872aa-f25c-4328-96ec-4936976241e6",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{x-api-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"db\": \"pg\",\n    \"ddl\": \"CREATE TABLE t (a int); CREATE\",\n    \"dmls\": [\n        \"table t; table t1\",\n        \"table\",\n        \"select * FROM t WHERE a = $1\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.parsers.dev/api/v1/compile",
+									"protocol": "https",
+									"host": [
+										"api",
+										"parsers",
+										"dev"
+									],
+									"path": [
+										"api",
+										"v1",
+										"compile"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0f5c9856-9888-4fa9-a3d2-03e4f068f4ec",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2ae6150c-f62f-4270-bcd2-c3120f16ce0e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
