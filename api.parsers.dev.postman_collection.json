@@ -12,7 +12,7 @@
 					"name": "postgresql",
 					"item": [
 						{
-							"name": "/api/parse/",
+							"name": "/api/parse/postgresql/",
 							"event": [
 								{
 									"listen": "test",
@@ -36,7 +36,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"db\": \"pg\",\n    \"sql\": \"CREATE TABLE t();SELECT 1; SELECT 1 FROM ; SELECT 2\"\n\t\n}",
+									"raw": "{\n    \"sql\": \"CREATE TABLE t();SELECT 1; SELECT 1 FROM ; SELECT 2\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -44,7 +44,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://api.parsers.dev/api/v1/parse/",
+									"raw": "https://api.parsers.dev/api/v1/parse/postgresql/",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -55,6 +55,7 @@
 										"api",
 										"v1",
 										"parse",
+										"postgresql",
 										""
 									],
 									"query": [
@@ -76,12 +77,12 @@
 					"name": "snowflake",
 					"item": [
 						{
-							"name": "/api/parse/",
+							"name": "/api/parse/snowflake/",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "a3c82748-33f7-40b9-ae1f-461997b8f005",
+										"id": "4c4a237c-3819-409f-964e-85388ed3b218",
 										"exec": [
 											""
 										],
@@ -100,7 +101,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"db\": \"snowflake\",\n    \"sql\": \"SELECT 1; SELECT 1 FROM ; SELECT 2\"\n\t\n}",
+									"raw": "{\n    \"sql\": \"SELECT 1; SELECT 1 FROM ; SELECT 2\"\t\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -108,7 +109,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://api.parsers.dev/api/v1/parse/",
+									"raw": "https://api.parsers.dev/api/v1/parse/snowflake/",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -119,6 +120,7 @@
 										"api",
 										"v1",
 										"parse",
+										"snowflake",
 										""
 									]
 								}
@@ -139,7 +141,65 @@
 					"name": "postgresql",
 					"item": [
 						{
-							"name": "/api/compile (+ast)",
+							"name": "/api/compile/postgresql/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bdf872aa-f25c-4328-96ec-4936976241e6",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"type": "text",
+										"value": "{{x-api-key}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ddl\": \"CREATE TABLE t (a int); CREATE\",\n    \"dmls\": [\n        \"table t; table t1\",\n        \"table\",\n        \"select * FROM t WHERE a = $1\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.parsers.dev/api/v1/compile/postgresql/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"parsers",
+										"dev"
+									],
+									"path": [
+										"api",
+										"v1",
+										"compile",
+										"postgresql",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/compile/postgresql/ (+ast)",
 							"event": [
 								{
 									"listen": "test",
@@ -163,7 +223,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"db\": \"pg\",\n    \"ddl\": \"CREATE TABLE t (a int); CREATE\",\n    \"dmls\": [\n        \"table t; table t1\",\n        \"table\",\n        \"select * FROM t WHERE a = $1\"\n    ]\n}",
+									"raw": "{\n    \"ddl\": \"CREATE TABLE t (a int); CREATE\",\n    \"dmls\": [\n        \"table t; table t1\",\n        \"table\",\n        \"select * FROM t WHERE a = $1\"\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -171,7 +231,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://api.parsers.dev/api/v1/compile",
+									"raw": "https://api.parsers.dev/api/v1/compile/postgresql/?ast=1",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -181,69 +241,14 @@
 									"path": [
 										"api",
 										"v1",
-										"compile"
+										"compile",
+										"postgresql",
+										""
 									],
 									"query": [
 										{
-											"key": "",
-											"value": "",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "/api/compile",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "bdf872aa-f25c-4328-96ec-4936976241e6",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "x-api-key",
-										"value": "{{x-api-key}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"db\": \"pg\",\n    \"ddl\": \"CREATE TABLE t (a int); CREATE\",\n    \"dmls\": [\n        \"table t; table t1\",\n        \"table\",\n        \"select * FROM t WHERE a = $1\"\n    ]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "https://api.parsers.dev/api/v1/compile",
-									"protocol": "https",
-									"host": [
-										"api",
-										"parsers",
-										"dev"
-									],
-									"path": [
-										"api",
-										"v1",
-										"compile"
-									],
-									"query": [
-										{
-											"key": "",
-											"value": "",
-											"disabled": true
+											"key": "ast",
+											"value": "1"
 										}
 									]
 								}
