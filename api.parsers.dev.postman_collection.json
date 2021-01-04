@@ -17,7 +17,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c414e1f3-e2b2-4b11-a82e-a0fef68a1dd8",
 										"exec": [
 											""
 										],
@@ -69,9 +68,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "snowflake",
@@ -82,7 +79,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4c4a237c-3819-409f-964e-85388ed3b218",
 										"exec": [
 											""
 										],
@@ -127,12 +123,9 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "compile",
@@ -146,7 +139,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bdf872aa-f25c-4328-96ec-4936976241e6",
 										"exec": [
 											""
 										],
@@ -204,7 +196,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1b9001ed-7a0f-4f03-a446-990af9055d89",
 										"exec": [
 											""
 										],
@@ -255,19 +246,153 @@
 							},
 							"response": []
 						}
+					]
+				},
+				{
+					"name": "snowflake",
+					"item": [
+						{
+							"name": "/api/compile/snowflake/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"type": "text",
+										"value": "{{x-api-key}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ddl\": \"CREATE TABLE t (a int); CREATE\",\n    \"dmls\": [\n        \"table t; table t1\",\n        \"table\",\n        \"select * FROM t WHERE a = $1\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.parsers.dev/api/v1/compile/snowflake/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"parsers",
+										"dev"
+									],
+									"path": [
+										"api",
+										"v1",
+										"compile",
+										"snowflake",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/compile/snowflake/ (+ast)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"type": "text",
+										"value": "{{x-api-key}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ddl\": \"CREATE TABLE t (a int); CREATE\",\n    \"dmls\": [\n        \"table t; table t1\",\n        \"table\",\n        \"select * FROM t WHERE a = $1\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.parsers.dev/api/v1/compile/snowflake/?ast=1",
+									"protocol": "https",
+									"host": [
+										"api",
+										"parsers",
+										"dev"
+									],
+									"path": [
+										"api",
+										"v1",
+										"compile",
+										"snowflake",
+										""
+									],
+									"query": [
+										{
+											"key": "ast",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
 					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "0f5c9856-9888-4fa9-a3d2-03e4f068f4ec",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -277,13 +402,11 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "2ae6150c-f62f-4270-bcd2-c3120f16ce0e",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
