@@ -124,6 +124,123 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "cypher",
+					"item": [
+						{
+							"name": "/api/parse/cypher/",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// //1000 ms is a maximum allowed value according to requirements ",
+											"// maximumResponseTime = 1000;",
+											"// //100 is a number of sent requests according to requirements ",
+											"// iterations = 100;",
+											"// //100 ms is a delay between requests according to requirements ",
+											"// delay = 0;",
+											"// //responseTimes is an array for collecting response time values",
+											"// responseTimes = [];",
+											"// i=0;",
+											"// function sendRequest() {",
+											"//     pm.sendRequest({",
+											"//         url: `http://localhost:60581/api/v1/parse/`,",
+											"//         method: 'POST',",
+											"//         header: {",
+											"//             'Content-Type': 'application/json',",
+											"//             'x-api-key': '82ca7c3d186040c338c7e53c6f153a7c277fda95a9013877009414adeb077e3b'",
+											"//         },",
+											"//         body: {",
+											"//             mode: 'raw',",
+											"//             raw: JSON.stringify({",
+											"//                 \"db\": \"pg\",",
+											"//                 \"sql\": \"SELECT 1; SELECT 1 FROM ; SELECT 2\"",
+											"//             }), ",
+											"//         }",
+											"//     }, function (err, res) {",
+											"//         console.log(err)",
+											"//         pm.test(\"Response time is \" + res.responseTime, function (){",
+											"//         pm.expect(err).to.equal(null);",
+											"//         pm.expect(res).to.have.property('code', 200);",
+											"//         responseTimes.push(res.responseTime);",
+											"//         });",
+											"//         if (i < iterations - 1) {",
+											"//             i++;",
+											"//             setTimeout(sendRequest, delay);",
+											"//         } ",
+											"//         else {",
+											"//             percentile90ResponseTime = quantile(responseTimes, 90);",
+											"//             pm.test(\"90 percentile response time \" + percentile90ResponseTime + \" is lower than \" + maximumResponseTime + \", the number of iterations is \" + iterations, function () {",
+											"//                 pm.expect(percentile90ResponseTime).to.be.below(maximumResponseTime);",
+											"//             });",
+											"//         }",
+											"//     });",
+											"// }",
+											"// sendRequest();",
+											"// function sortNumber(a,b) {",
+											"//     return a - b;",
+											"// }",
+											"// function quantile(array, percentile) {",
+											"//     array.sort(sortNumber);",
+											"//     index = percentile/100. * (array.length-1);",
+											"//     if (Math.floor(index) == index) {",
+											"//      result = array[index];",
+											"//     } else {",
+											"//         j = Math.floor(index)",
+											"//         fraction = index - j;",
+											"//         result = array[j] + (array[j+1] - array[j]) * fraction;",
+											"//     }",
+											"//     return result;",
+											"// }"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"type": "text",
+										"value": "{{x-api-key}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"sql\": \"MATCH (node1:Label1)-->(node2:Label2) WHERE node1.propertyA = {value} RETURN node2.propertyA, node2.propertyB; RETURN 1; return ;START n=node:index(foo = 'bar');\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/parse/cypher/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"parse",
+										"cypher",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
