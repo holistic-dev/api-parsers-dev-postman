@@ -210,7 +210,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"sql\": \"MATCH (node1:Label1)-->(node2:Label2) WHERE node1.propertyA = {value} RETURN node2.propertyA, node2.propertyB; RETURN 1; return ;START n=node:index(foo = 'bar');\"\n}",
+									"raw": "{\n    \"sql\": \"MATCH (node1:Label1)-->(node2:Label2) WHERE node1.propertyA = {value} RETURN node2.propertyA, node2.propertyB; RETURN 1; return ;START n=node:index(foo = 'bar');CREATE (a:Person { name: 'Anne', eyeColor: 'blue' }),(b:Person { name: 'Bill', eyeColor: 'brown',(c:Person { name: 'Carol', eyeColor: 'blue' }) WITH [a, b, c] AS ps UNWIND ps AS p RETURN DISTINCT p.eyeColor\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -218,9 +218,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/parse/cypher/",
+									"raw": "https://api.parsers.dev/api/v1/parse/cypher/",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"api",
+										"parsers",
+										"dev"
 									],
 									"path": [
 										"api",
